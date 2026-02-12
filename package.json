@@ -1,0 +1,11 @@
+{
+  "name": "demo-utils",
+  "version": "1.0.0",
+  "description": "Small utility library with validation helpers",
+  "main": "src/validators.js",
+  "scripts": {
+    "test": "node test/validators.test.js"
+  },
+  "keywords": [],
+  "license": "MIT"
+}
