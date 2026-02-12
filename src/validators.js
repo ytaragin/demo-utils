@@ -17,17 +17,23 @@ function validateEmail(email) {
 /**
  * Validates that age is a reasonable number.
  * @param {number} age
+ * @param {{ min?: number, max?: number }} options - Validation options (required)
  * @returns {{ valid: boolean, error?: string }}
  */
-function validateAge(age) {
+function validateAge(age, options) {
+  if (!options || typeof options !== "object") {
+    throw new TypeError("options parameter is required for validateAge");
+  }
+  const min = options.min ?? 0;
+  const max = options.max ?? 150;
   if (age === undefined || age === null) {
     return { valid: false, error: "Age is required" };
   }
   if (typeof age !== "number" || isNaN(age)) {
     return { valid: false, error: "Age must be a number" };
   }
-  if (age < 0 || age > 150) {
-    return { valid: false, error: "Age must be between 0 and 150" };
+  if (age < min || age > max) {
+    return { valid: false, error: `Age must be between ${min} and ${max}` };
   }
   return { valid: true };
 }
